@@ -6,7 +6,7 @@
 from scipy.stats import f
 from statscalculation.cli_utils import int_input, float_input, float_list_input, yes_or_not_input, group_data_input
 
-def HSD(alpha: float, k: int, v: int, r: int, MSE: float, means: list[float]) -> str:
+def HSD(alpha: float, k: int, v: int, r: int, MSE: float, means: list[float]) -> None:
     """
     如果有显著性差异，且满足ni = nj的假设，给出HSD
     Args:
@@ -19,7 +19,7 @@ def HSD(alpha: float, k: int, v: int, r: int, MSE: float, means: list[float]) ->
     """
     if MSE == 0:          # HSD无意义
         print("MSE ≈ 0, within-group variance is zero; HSD cannot be computed.")
-
+        return
     from math import sqrt
     from scipy.stats import studentized_range
     Q = studentized_range.ppf(1 - alpha, k, v)

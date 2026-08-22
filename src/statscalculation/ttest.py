@@ -39,10 +39,11 @@ def main():
         3.方差未知且不相等
     """
     # 数据输入
+    alpha = float_input("Please enter the significance level: ")
     group_data = group_data_input(k = 2)
-    alpha, data = group_data["alpha"], group_data["data"]
-    n, m = len(data["group0"]), len(data["group1"])                     # m为group0的数据量， n为group1的数据量
-    mean_X, mean_Y = sum(data["group0"]) / n, sum(data["group1"]) / m   # 分别计算两组的平均值
+    data = group_data["data"]
+    m, n = len(data["group0"]), len(data["group1"])                     # m为group0的数据量， n为group1的数据量
+    mean_X, mean_Y = sum(data["group0"]) / m, sum(data["group1"]) / n   # 分别计算两组的平均值
 
     # 判断属于哪一种情况
     var_known = yes_or_not_input("Are the variances known?")
@@ -71,15 +72,15 @@ def main():
         if var_equal:
 
             # 方差未知且相等 -> pooled t test
-            s2_pooled = ((n - 1) * var_X + (m - 1) * var_Y) / (n + m - 2)
-            df = n + m - 2
+            s2_pooled = ((m - 1) * var_X + (n - 1) * var_Y) / (m + n - 2)
+            df = m + n - 2
 
             # t 临界值
             t_alpha = t_dist.ppf(1 - alpha, df)
             t_half  = t_dist.ppf(1 - alpha / 2, df)
 
             # t 统计量
-            t_stat = (mean_X - mean_Y) / sqrt(s2_pooled * (1 / n + 1 / m))
+            t_stat = (mean_X - mean_Y) / sqrt(s2_pooled * (1 / m + 1 / n))
 
             # 打印结果
             print(f"T = {t_stat:.4f}, tα = {t_alpha:.4f}, tα/₂ = {t_half:.4f},  df = {df}")
@@ -88,8 +89,8 @@ def main():
         else:
             # 方差未知且不相等 -> Welch t test
             # welch统计量
-            v = round((var_X / n + var_Y / m) ** 2 / (((var_X / n) ** 2 / (n - 1)) + ((var_Y / m) ** 2 / (m - 1))))    # Satterthwaite 近似自由度
-            w_stat = (mean_X - mean_Y) / sqrt(var_X / n + var_Y / m)                                                  # Welch t 统计量
+            v = round((var_X / m + var_Y / n) ** 2 / (((var_X / m) ** 2 / (m - 1)) + ((var_Y / n) ** 2 / (n - 1))))    # Satterthwaite 近似自由度
+            w_stat = (mean_X - mean_Y) / sqrt(var_X / m + var_Y / n)                                                  # Welch t 统计量
 
             # t 临界值
             t_alpha = t_dist.ppf(1 - alpha, v)

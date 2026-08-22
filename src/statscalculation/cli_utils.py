@@ -1,12 +1,12 @@
 """
     1.输入函数
-        * 整数输入
-        * 浮点数输入
-        * 浮点数组输入
-        * yes/no输入
-        * 数据组输入
+        * 整数输入              int_input()
+        * 浮点数输入            float_input()
+        * 浮点数组输入          float_list_input()
+        * yes/no输入           yes_or_not_input()
+        * 数据组输入            group_data_input()
     2.数据处理
-        * 求sample variance
+        * 求sample variance     get_sample_variance()
 """
 from typing import Callable, TypeVar, List
 T = TypeVar("T")
