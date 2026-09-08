@@ -40,8 +40,9 @@ def main():
     #Total          n-1    SSTOT 
     """
     # 数据输入
+    alpha = float_input("Please enter the significance level: ")
     group_data = group_data_input()
-    alpha, k, data = group_data["alpha"], group_data["k"], group_data["data"]   # 一类错误（float）, 组数（int）, 各组数据（dict）
+    k, data =  group_data["k"], group_data["data"]   # 一类错误（float）, 组数（int）, 各组数据（dict）
 
     # 新产生数据
     n = 0                           # the number of the whole data

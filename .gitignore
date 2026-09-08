@@ -2,6 +2,7 @@ __pycache__/
 *.py[cod]
 *.so
 .claude/
+dist
 
 *.egg-info/
 dist/

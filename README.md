@@ -1,6 +1,6 @@
 # statscalculation
 
-写着玩的古法编程项目。命令行交互式统计计算器，用于手算小样本统计数据（如数理统计作业）。
+命令行交互式统计计算器，用于手算小样本统计数据（如数理统计作业）。
 
 已上传至 [PyPI](https://pypi.org/project/statscalculation/)。
 
@@ -33,3 +33,4 @@ ttest
 |------|------|
 | `anova` | 单因素方差分析 + Tukey HSD 事后比较 |
 | `ttest` | 双样本检验：z 检验 / pooled t / Welch t，输出决策表与 p 值 |
+| 'contingency' | 列联表独立性检验 |

@@ -52,15 +52,13 @@ def yes_or_not_input(prompt: str ="") -> bool:
             return False
         print("Please check your input!")
 
-def group_data_input(k: int=0) -> dict:
+def group_data_input(k: int) -> dict:
     """
         批量数据录入
-        return {"alpha":alpha(float), "k":k(int), "data":data(dict)}
-        data = {group0:[],group1:[](,...)}
+        return {"k":k(int), "data":data(dict)}
+            data = {group0:[],group1:[](,...)}
     """
     # 数据输入
-    alpha = float_input("Please enter the significance level: ")
-
     if k == 0:
         # 当输入未指定k的大小时
         k = int_input("Please enter the number of groups: ")
@@ -94,7 +92,7 @@ def group_data_input(k: int=0) -> dict:
         print("\nAlright, the followings are the final data")
         for key, group in data.items():
             print(key, ":", group)
-    return {"alpha":alpha, "k":k, "data":data}
+    return {"k":k, "data":data}
 
 ###################
 # sample variance #
