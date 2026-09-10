@@ -91,7 +91,7 @@ def main():
     else:
         print(f"p = {p:.4f} ≥ α = {alpha}, fail to reject H₀ ————— no significant difference detected among group means.")
     
-    return "\nANOVA F-test ends"
+    return "ANOVA F-test ends, press any key to exit."
 
 if __name__ == "__main__":
     main()

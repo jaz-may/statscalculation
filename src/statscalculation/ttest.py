@@ -100,6 +100,6 @@ def main():
             print(f"Welch T = {w_stat:.4f},  tα = {t_alpha:.4f},  tα/₂ = {t_half:.4f},  df ≈ {v}")
             print()
             test_table(w_stat, t_alpha, t_half, dist="t", df=v)
-
+    return "Two sample test ends, press any key to exit."
 if __name__ == "__main__":
     main()
