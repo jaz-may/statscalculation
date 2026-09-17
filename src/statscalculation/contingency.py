@@ -10,19 +10,19 @@ def data_input(r: int, c: int):
     '''
     data = []
     print("Attention, each figure should be seperated by space!")
-    for _ in range(r):
-        if _ == 1:
+    for idx in range(r):
+        if idx == 1:
             print(f"Please enter the 1st row of data:", end='')
-        elif _ == 2:
+        elif idx == 2:
             print(f"Please enter the 2nd row of data:", end='')
-        elif _ == 3:
+        elif idx == 3:
             print(f"Please enter the 3rd row of data:", end='')
         else:
-            print(f"Please enter the {_ + 1}th row of data:", end='')
+            print(f"Please enter the {idx + 1}th row of data:", end='')
         raw_data = input().split()
         while len(raw_data) != c:
             print("The length of data is inconsistent with the number of columns, please try again!")
-            raw_data = input("Please enter the data:", end='').split()
+            raw_data = input("Please enter the data:").split()
         raw_data = [int(i) for i in raw_data]
         data.append(raw_data)
     return np.array(data)
@@ -30,12 +30,14 @@ def data_input(r: int, c: int):
 
 def main():
     # 构造临界值
-    alpha = float_input("Please enter the significance level:")
-    r, c = int_input("Please enter the number of rows:"), int_input("Please enter the number of columns")
+    alpha = float_input("Please enter the significance level: ")
+    print(f"H₀: The two variables are independent.\nH₁: The two variables are dependent.")
+    r, c = int_input("Please enter the number of rows: "), int_input("Please enter the number of columns: ")
     total = r * c
     df = (r - 1) * (c - 1)      # 自由度
     critical_value = chi2.ppf(1 - alpha, df)
-    data = data_input()
+    data = data_input(r, c)
+
     # data[i][j]为第i行第j列对应的数
     # 观测值 - 预测值
     x_2 = 0
@@ -48,8 +50,10 @@ def main():
             x_2 += (diff ** 2 / estimated)
     if x_2 >= critical_value:
         print(f"test statistic {x_2} >= critical value {critical_value} -> reject H₀")
+        print(f"At the significance level of {alpha}, we believe the variables are dependent.")
     else: 
         print(f"test statistic {x_2} < critical value {critical_value} -> fail to reject H₀")
+        print(f"At the significance level of {alpha}, we have no enough evidence to reject the null hypothesis that the variables are independent.")
     return "Independency test ends, press any key to exit."
 
 if __name__ == "__main__":

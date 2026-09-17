@@ -52,7 +52,7 @@ def yes_or_not_input(prompt: str ="") -> bool:
             return False
         print("Please check your input!")
 
-def group_data_input(k: int) -> dict:
+def group_data_input(k: int=0) -> dict:
     """
         批量数据录入
         return {"k":k(int), "data":data(dict)}

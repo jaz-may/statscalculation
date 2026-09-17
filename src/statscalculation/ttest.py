@@ -40,6 +40,10 @@ def main():
     """
     # 数据输入
     alpha = float_input("Please enter the significance level: ")
+
+    # 假设检验
+    print(f"H₀: Mean of the two groups are equal.\nH₁: Mean of the two groups are different.")
+    
     group_data = group_data_input(k = 2)
     data = group_data["data"]
     m, n = len(data["group0"]), len(data["group1"])                     # m为group0的数据量， n为group1的数据量

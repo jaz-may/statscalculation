@@ -26,15 +26,15 @@ MANUAL = f"""
           stats              show this page and available tools
 
       Tools:
-          anova  — one-way ANOVA (ANOVA table + Tukey HSD)
-          ttest  — two-sample test (z-test / pooled t / Welch t)
-
+            anova  — one-way ANOVA (ANOVA table + Tukey HSD)
+            ttest  — two-sample test (z-test / pooled t / Welch t)
+            contingency - chi square independence test
       Type q / quit / exit at any prompt to leave safely.
   """
 
 # ── 工具注册表 ──────────────────────────────────────────
 # 格式: { "命令名": ("描述", import_path, 状态) }
-# 状态: "done" | "wip" | "planned"
+# 状态: "done" | "tbc" | "planned"
 
 TOOLS = {
     "anova": (
@@ -44,14 +44,19 @@ TOOLS = {
     ),
     "ttest": (
         "two-sample test — z-test / pooled t / Welch t",
-        "statscalculation.ttest.main",
+        "statscalculation.ttest:main",
         "done",
     ),
-    "chisq": (
-        "goodness-of-fit & independence test",
-        None,
-        "wip",
+    "contingency": (
+        "chi square independence test",
+        "statscalculation.contingency:main",
+        "done",
     ),
+    "goodness-of-fit":(
+        "goodness of fit test",
+        None,
+        "To be continued..."
+    )
 }
 
 def print_banner():
@@ -62,7 +67,7 @@ def _show_tools():
     """打印可用工具列表"""
     # 已完成的
     done = {k: v for k, v in TOOLS.items() if v[2] == "done"}
-    wip = {k: v for k, v in TOOLS.items() if v[2] == "wip"}
+    tbc = {k: v for k, v in TOOLS.items() if v[2] == "To be continued..."}
 
     print("ready:")
     if done:
@@ -73,8 +78,8 @@ def _show_tools():
     print()
 
     print("coming soon:")
-    if wip:
-        for name, (desc, _, _) in wip.items():
+    if tbc:
+        for name, (desc, _, _) in tbc.items():
             print(f"  [ ] {name:<14}{desc}")
     else:
         print("not available")

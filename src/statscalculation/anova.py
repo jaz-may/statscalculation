@@ -4,7 +4,7 @@
 """
 
 from scipy.stats import f
-from statscalculation.cli_utils import int_input, float_input, float_list_input, yes_or_not_input, group_data_input
+from statscalculation.cli_utils import float_input, group_data_input
 
 def HSD(alpha: float, k: int, v: int, r: int, MSE: float, means: list[float]) -> None:
     """
