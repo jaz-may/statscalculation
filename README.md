@@ -33,4 +33,4 @@ ttest
 |------|------|
 | `anova` | 单因素方差分析 + Tukey HSD 事后比较 |
 | `ttest` | 双样本检验：z 检验 / pooled t / Welch t，输出决策表与 p 值 |
-| 'contingency' | 列联表独立性检验 |
+| `contingency` | 列联表独立性检验 |
